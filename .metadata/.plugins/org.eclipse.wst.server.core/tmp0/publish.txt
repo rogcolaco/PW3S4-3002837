@@ -1,3 +1,4 @@
 #Tomcat publish data
-#Tue Mar 03 20:35:24 BRT 2020
+#Tue Mar 10 19:44:04 BRT 2020
+org.eclipse.jst.jee.server\:Forum=C\:\\Users\\manov\\Documents\\Tomcat\\apache-tomcat-9.0.31\\wtpwebapps\\Forum
 org.eclipse.jst.jee.server\:Calculadora=C\:\\Users\\manov\\Documents\\Tomcat\\apache-tomcat-9.0.31\\wtpwebapps\\Calculadora
