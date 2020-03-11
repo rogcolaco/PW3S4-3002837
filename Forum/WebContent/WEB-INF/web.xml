@@ -2,7 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>Forum</display-name>
   <welcome-file-list>
-    <welcome-file>Index.html</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -19,6 +18,10 @@
   <servlet>
     <servlet-name>ForumServlet</servlet-name>
     <servlet-class>Forum</servlet-class>
+    <init-param>
+    	<param-name>color</param-name>
+    	<param-value>red</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>ForumServlet</servlet-name>
@@ -28,11 +31,19 @@
   <servlet>
     <servlet-name>lerMsg</servlet-name>
     <servlet-class>MensagemServlet</servlet-class>
+    <init-param>
+    	<param-name>bgColor</param-name>
+    	<param-value>blue</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>color</param-name>
+    	<param-value>white</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>lerMsg</servlet-name>
   	<url-pattern>/getAll</url-pattern>
   </servlet-mapping>
-  
+
   
 </web-app>

@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 public class MensagemServlet extends HttpServlet{
 
 		private String filename;
+		private String bgColor;
+		private String color;
 		
 		public void init() throws ServletException{
 			filename = getServletContext().getInitParameter("filename");
+			bgColor = getServletConfig().getInitParameter("bgColor");
+			color = getServletConfig().getInitParameter("color");
 		}
 		
 		public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +31,7 @@ public class MensagemServlet extends HttpServlet{
 			//Gerando resposta na tela
 			PrintWriter out = response.getWriter();
 			out.println("<html><head><title>Mensagens Enviadas</title></head>"
-					+ "<body><table><tr><th>Email</th><th>Mensagem</th></tr>");
+					+ "<body bgcolor="+ bgColor +" text="+ color + "><table><tr><th>Email</th><th>Mensagem</th></tr>");
 			while (linha != null) {  
 				String[] msg = linha.split(";");
 				out.println("<tr><td>" + msg[0] + "</td>"
