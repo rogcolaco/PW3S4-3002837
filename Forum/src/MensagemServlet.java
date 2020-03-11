@@ -13,20 +13,28 @@ public class MensagemServlet extends HttpServlet{
 		private String filename;
 		private String bgColor;
 		private String color;
+		//private int count;
+		
 		
 		public void init() throws ServletException{
 			filename = getServletContext().getInitParameter("filename");
 			bgColor = getServletConfig().getInitParameter("bgColor");
 			color = getServletConfig().getInitParameter("color");
+			//count = (Integer)getServletContext().getAttribute("contador");
 		}
 		
 		public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
+			
+			int count = (Integer)getServletContext().getAttribute("contador");
 					
 			//Lendo arquivo
 			FileReader file = new FileReader(filename);
 			BufferedReader leitor = new BufferedReader(file);
 			String linha = leitor.readLine();
+			getServletContext().setAttribute("contador",++count);
+			count = (Integer)getServletContext().getAttribute("contador");
+			
 			
 			//Gerando resposta na tela
 			PrintWriter out = response.getWriter();
@@ -38,7 +46,7 @@ public class MensagemServlet extends HttpServlet{
 						+ "<td>" + msg[1] + "</td></tr>");
 				linha = leitor.readLine();
 			}  
-			out.println("</table></body></html>");
+			out.println("</table><p>Número de acessos: " + count + "</p></body></html>");
 			leitor.close();   
 			file.close();
 			out.close();
