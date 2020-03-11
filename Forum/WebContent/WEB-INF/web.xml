@@ -10,14 +10,15 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <context-param>
+  	<param-name>filename</param-name>
+    <param-value>C:\\Users\\manov\\Downloads\\Forum\\mensagens.txt</param-value>
+  </context-param>
+  
   <servlet>
     <servlet-name>ForumServlet</servlet-name>
     <servlet-class>Forum</servlet-class>
-    <init-param>
-    	<param-name>filename</param-name>
-    	<param-value>C:\\Users\\manov\\Downloads\\Forum\\mensagens.txt</param-value>
-    
-    </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>ForumServlet</servlet-name>
@@ -27,14 +28,11 @@
   <servlet>
     <servlet-name>lerMsg</servlet-name>
     <servlet-class>MensagemServlet</servlet-class>
-    <init-param>
-    	<param-name>filename</param-name>
-    	<param-value>C:\\Users\\manov\\Downloads\\Forum\\mensagens.txt</param-value>
-    
-    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>lerMsg</servlet-name>
   	<url-pattern>/getAll</url-pattern>
   </servlet-mapping>
+  
+  
 </web-app>

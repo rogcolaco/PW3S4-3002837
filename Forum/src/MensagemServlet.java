@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,40 +13,30 @@ public class MensagemServlet extends HttpServlet{
 		private String filename;
 		
 		public void init() throws ServletException{
-			filename = getServletConfig().getInitParameter("filename");
+			filename = getServletContext().getInitParameter("filename");
 		}
 		
 		public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-			
-			String linha = null;
-			ArrayList<String> msgs = new ArrayList<String>();
 					
 			//Lendo arquivo
-			FileReader reader = new FileReader(filename);
-			BufferedReader leitor = new BufferedReader(reader);
-			while ((linha = leitor.readLine()) != null) {  
-				msgs.add(linha);
-			}  
-			leitor.close();  
-			reader.close();  
+			FileReader file = new FileReader(filename);
+			BufferedReader leitor = new BufferedReader(file);
+			String linha = leitor.readLine();
 			
-			//Gerando resposta
+			//Gerando resposta na tela
 			PrintWriter out = response.getWriter();
-			out.println("<html><header><title>Forum</title></header><body>"
-					+ "<h1>Mensagens enviadas</h1>"
-					+ "<hr/>");
-			int i = 1;
-			for ( String text : msgs) {
-				out.println("<h2>Mensagem " + i + "</h2>");
-				i++;
-				String[] msg = text.split(";");
-				//out.println("<p>" + msg + "</p>");
-				out.println("<p>E-mail: " + msg[0] + "</p>"
-						+ "<p>Mensagem: " + msg[1] + "</p>"
-						+ "<hr/>");
-			};
-			out.println("</body></html>");
+			out.println("<html><head><title>Mensagens Enviadas</title></head>"
+					+ "<body><table><tr><th>Email</th><th>Mensagem</th></tr>");
+			while (linha != null) {  
+				String[] msg = linha.split(";");
+				out.println("<tr><td>" + msg[0] + "</td>"
+						+ "<td>" + msg[1] + "</td></tr>");
+				linha = leitor.readLine();
+			}  
+			out.println("</table></body></html>");
+			leitor.close();   
+			file.close();
 			out.close();
 		}
 		

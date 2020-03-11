@@ -18,7 +18,7 @@ public class Forum extends HttpServlet{
 	public void init()throws ServletException{
 		
 		//Configurando caminho para salvar arquivo
-		filename = getServletConfig().getInitParameter("filename");
+		filename = getServletContext().getInitParameter("filename");
 	}
 	
 	public void doPost (HttpServletRequest request, HttpServletResponse response) 
